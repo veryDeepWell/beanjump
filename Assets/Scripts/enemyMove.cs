@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class enemyMove : MonoBehaviour
 {
+    AudioSource takeDamage;
+
     public Text damageText;
 
     public NavMeshAgent agent;
@@ -35,6 +37,7 @@ public class enemyMove : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadeTextToZeroAlpha(0.1f, damageText));
+        takeDamage = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -112,6 +115,7 @@ public class enemyMove : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("enemy.touch");
+            takeDamage.Play();
             health--;
 
             if (health <= 0)
