@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class enemyMove : MonoBehaviour
 {
-    AudioSource takeDamage;
+    public AudioSource getHitted;
+    public AudioSource shoot;
 
     public Text damageText;
 
@@ -37,7 +38,6 @@ public class enemyMove : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadeTextToZeroAlpha(0.1f, damageText));
-        takeDamage = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -90,6 +90,7 @@ public class enemyMove : MonoBehaviour
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
+            shoot.Play();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -115,7 +116,7 @@ public class enemyMove : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("enemy.touch");
-            takeDamage.Play();
+            getHitted.Play();
             health--;
 
             if (health <= 0)

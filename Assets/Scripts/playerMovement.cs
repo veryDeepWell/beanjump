@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    AudioSource jumpSound;
+    [Header("Sound")]
+    public AudioSource jumpSound;
 
     [Header("Movement")]
     private float moveSpeed;
@@ -55,7 +56,6 @@ public class playerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        jumpSound = rb.GetComponent<AudioSource>();
         rb.freezeRotation = true;
 
         readyToJump = true;

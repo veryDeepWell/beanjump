@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class playerHealth : MonoBehaviour
 {
+    public AudioSource takeDamage;
+
     public Text healthText;
 
     public float currentHealth;
@@ -26,6 +28,7 @@ public class playerHealth : MonoBehaviour
         {
             Debug.Log("player.hit.trigger");
             Destroy(other.gameObject);
+            takeDamage.Play();
             currentHealth--;
 
             healthText.text = "";
